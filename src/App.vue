@@ -21,7 +21,7 @@
                     <li v-for="(item2,index2) in item1.third_menu" :key=index2>
                       <a href="#">
                         <div class="title">{{item2.title}}</div>
-                        <div class="desc">{{item2.desc}}</div>
+                        <div class="desc">{{item2.decs}}</div>
                       </a>
                     </li>
                   </ul>
@@ -45,7 +45,7 @@
       </div>
     </div>
     <div class="content">
-      <router-view></router-view>
+      <home-page></home-page>
     </div>
     <div class="footer"></div>
     <div class="cover_btn"></div>
@@ -53,6 +53,7 @@
 </template>
 
 <script>
+import home_page from "./components/home_page/home_page"
 export default {
   name: 'App',
   data() {
@@ -442,10 +443,12 @@ export default {
         }
       ]
     }
+  },
+  components: {
+    homePage: home_page
   }
 }
 </script>
-
 <style lang="less"  type="text/less">
 #app {
   .header{
@@ -490,6 +493,16 @@ export default {
               }
               .second_menu{
                 display: flex;
+                // opacity: 1;
+                animation: myfirst 600ms;
+                @keyframes myfirst{
+                  from{
+                    opacity: 0;
+                  }
+                  to{
+                    opacity: 1;
+                  }
+                }
               }
             }
             flex: 1;
@@ -511,30 +524,81 @@ export default {
               padding: 0 10%;
               flex-direction:row;
               background: #2C2D2E;
-              // &:last-child{
-              //   display: flex;
-              // }
+              transition: opacity 2000ms;
               .second_menu_li{
                 flex: 1;
-                height: 76px;
-                border-right: 1px solid #9B9EA3;
-                &:last-child{
-                  border: none;
-                }
+                padding: 18px 0;
+                height: 40px;
                 text-align: center;
                 .second_menu_wrapper{
+                  display: block;
+                  border-right: 1px solid #9B9EA3;
+                  &:last-child{
+                    border-right: none;
+                  }
                   a{
                     display: block;
                     color: #9B9EA3;
                     .big{
-                      line-height: 40px;
+                      line-height: 25px;
                       font-size: 18px;
                       font-weight: 700;
                     }
                     .small{
-                      line-height: 30px;
+                      line-height: 15px;
                       font-size: 13px;
                       }
+                  }
+                }
+                &:hover{
+                  background: #242424;
+                  .second_menu_wrapper{
+                    border: none;
+                    a{
+                      color: #fff;
+                    }
+                  }
+                  .third_menu {
+                    display: block;
+                  }
+                }
+                .third_menu{
+                  font-size: 0;
+                  width: 100%;
+                  position: absolute;
+                  top: 75px;
+                  left: 0;
+                  background: #1F1F1F;
+                  height: 350px;
+                  box-sizing: border-box;
+                  padding: 0 10%;
+                  text-align: left;
+                  &>li{
+                    text-align: left;
+                    display: inline-block;
+                    box-sizing: border-box;
+                    width: 25%;
+                    margin-top: 20px;
+                    padding-left: 15px;
+                    // flex: 1 1 25%;
+                    font-size: 15px;
+                    .title{
+                      line-height: 30px;
+                      font-size: 17px;
+                      font-weight: 700;
+                      color: #fff;
+                      
+                      }
+                    .desc{
+                      line-height: 10px;
+                      font-size: 13px;
+                      color:#9B9EA3;
+                    }
+                    &:hover{
+                      .title{
+                        color: #008DFA;
+                      }
+                    }
                   }
                 }
               }

@@ -1,9 +1,7 @@
 <template>
   <div id="home_page">
     <div class="section_one">
-      <ul>
-        <li v-for="{item,index} in 5" :key=index></li>
-      </ul>
+      <lunbo></lunbo>
     </div>
     <div class="section_two">
       <div class="title"></div>
@@ -61,10 +59,16 @@
   </div>
 </template>
 <script>
+import lunbo from "../lunbo/lunbo"
 export default {
+  components: {
+    lunbo: lunbo
+  }
 }
 </script>
 <style lang="less"  type="text/less">
-#app{
+#home_page{
+  .section_one{
+  }
 }
 </style>
