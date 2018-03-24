@@ -1,23 +1,612 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <router-view/>
+    <div class="header">
+      <div class="header_wrapper">
+        <div class="logo_wrapper">
+          <a href="#"></a>
+        </div>
+        <div class="nav">
+          <ul class="nav_wrapper">
+            <li class="first_menu" v-for="(item,index) in menu_data" :key =index>
+              <span class="name"><a href="#">{{item.title}}</a></span>
+              <ul class="second_menu">
+                <li class="second_menu_li" v-for="(item1,index1) in item.second_menu" :key=index1>
+                  <span class="second_menu_wrapper">
+                    <a href="#">
+                        <div class="big">{{item1.title}}</div>
+                        <div class="small">{{item1.desc}}</div>  
+                    </a>
+                  </span>
+                  <ul class="third_menu">
+                    <li v-for="(item2,index2) in item1.third_menu" :key=index2>
+                      <a href="#">
+                        <div class="title">{{item2.title}}</div>
+                        <div class="desc">{{item2.desc}}</div>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <div class="lang_btn">
+          <div class="lang_btn_wrapper">
+            <a href="#">English</a>
+          </div>
+          <div class="btn">
+            <span><a href="#">中国站</a></span>
+            <span><a href="#">English</a></span>
+          </div>
+        </div>
+        <div class="enter_btn">
+          <a href="#">登录/注册</a>
+        </div>
+      </div>
+    </div>
+    <div class="content">
+      <router-view></router-view>
+    </div>
+    <div class="footer"></div>
+    <div class="cover_btn"></div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+  data() {
+    return {
+      menu_data: [
+        {
+          title: "首页",
+          second_menu: []
+        },
+        {
+          title: "产品信息",
+          second_menu: [
+            {
+              title: "大数据基础",
+              desc: "Basic",
+              third_menu: [
+                {
+                  title: "大数据基础",
+                  decs: "大数据基础等顶顶顶顶得得得"
+                },
+                {
+                  title: "大数据基础",
+                  decs: "大数据基础等顶顶顶顶得得得"
+                },
+                {
+                  title: "大数据基础",
+                  decs: "大数据基础等顶顶顶顶得得得"
+                },
+                {
+                  title: "大数据基础",
+                  decs: "大数据基础等顶顶顶顶得得得"
+                },
+                {
+                  title: "大数据基础",
+                  decs: "大数据基础等顶顶顶顶得得得"
+                },
+                {
+                  title: "大数据基础",
+                  decs: "大数据基础等顶顶顶顶得得得"
+                }
+              ]
+            },
+            {
+              title: "大数据基础",
+              desc: "Basic",
+              third_menu: [
+                {
+                  title: "大数据基础",
+                  decs: "大数据基础等顶顶顶顶得得得"
+                },
+                {
+                  title: "大数据基础",
+                  decs: "大数据基础等顶顶顶顶得得得"
+                },
+                {
+                  title: "大数据基础",
+                  decs: "大数据基础等顶顶顶顶得得得"
+                },
+                {
+                  title: "大数据基础",
+                  decs: "大数据基础等顶顶顶顶得得得"
+                },
+                {
+                  title: "大数据基础",
+                  decs: "大数据基础等顶顶顶顶得得得"
+                },
+                {
+                  title: "大数据基础",
+                  decs: "大数据基础等顶顶顶顶得得得"
+                }
+              ]
+            },
+            {
+              title: "大数据基础",
+              desc: "Basic",
+              third_menu: [
+                {
+                  title: "大数据基础",
+                  decs: "大数据基础等顶顶顶顶得得得"
+                },
+                {
+                  title: "大数据基础",
+                  decs: "大数据基础等顶顶顶顶得得得"
+                },
+                {
+                  title: "大数据基础",
+                  decs: "大数据基础等顶顶顶顶得得得"
+                },
+                {
+                  title: "大数据基础",
+                  decs: "大数据基础等顶顶顶顶得得得"
+                },
+                {
+                  title: "大数据基础",
+                  decs: "大数据基础等顶顶顶顶得得得"
+                },
+                {
+                  title: "大数据基础",
+                  decs: "大数据基础等顶顶顶顶得得得"
+                }
+              ]
+            },
+            {
+              title: "大数据基础",
+              desc: "Basic",
+              third_menu: [
+                {
+                  title: "大数据基础",
+                  decs: "大数据基础等顶顶顶顶得得得"
+                },
+                {
+                  title: "大数据基础",
+                  decs: "大数据基础等顶顶顶顶得得得"
+                },
+                {
+                  title: "大数据基础",
+                  decs: "大数据基础等顶顶顶顶得得得"
+                },
+                {
+                  title: "大数据基础",
+                  decs: "大数据基础等顶顶顶顶得得得"
+                },
+                {
+                  title: "大数据基础",
+                  decs: "大数据基础等顶顶顶顶得得得"
+                },
+                {
+                  title: "大数据基础",
+                  decs: "大数据基础等顶顶顶顶得得得"
+                }
+              ]
+            }
+
+          ]
+        },
+        {
+          title: "方案与案例",
+          second_menu: [
+            {
+              title: "大数据基础",
+              desc: "Basic",
+              third_menu: [
+                {
+                  title: "大数据基础",
+                  decs: "大数据基础等顶顶顶顶得得得"
+                },
+                {
+                  title: "大数据基础",
+                  decs: "大数据基础等顶顶顶顶得得得"
+                },
+                {
+                  title: "大数据基础",
+                  decs: "大数据基础等顶顶顶顶得得得"
+                },
+                {
+                  title: "大数据基础",
+                  decs: "大数据基础等顶顶顶顶得得得"
+                },
+                {
+                  title: "大数据基础",
+                  decs: "大数据基础等顶顶顶顶得得得"
+                },
+                {
+                  title: "大数据基础",
+                  decs: "大数据基础等顶顶顶顶得得得"
+                }
+              ]
+            },
+            {
+              title: "大数据基础",
+              desc: "Basic",
+              third_menu: [
+                {
+                  title: "大数据基础",
+                  decs: "大数据基础等顶顶顶顶得得得"
+                },
+                {
+                  title: "大数据基础",
+                  decs: "大数据基础等顶顶顶顶得得得"
+                },
+                {
+                  title: "大数据基础",
+                  decs: "大数据基础等顶顶顶顶得得得"
+                },
+                {
+                  title: "大数据基础",
+                  decs: "大数据基础等顶顶顶顶得得得"
+                },
+                {
+                  title: "大数据基础",
+                  decs: "大数据基础等顶顶顶顶得得得"
+                },
+                {
+                  title: "大数据基础",
+                  decs: "大数据基础等顶顶顶顶得得得"
+                }
+              ]
+            },
+            {
+              title: "大数据基础",
+              desc: "Basic",
+              third_menu: [
+                {
+                  title: "大数据基础",
+                  decs: "大数据基础等顶顶顶顶得得得"
+                },
+                {
+                  title: "大数据基础",
+                  decs: "大数据基础等顶顶顶顶得得得"
+                }
+              ]
+            },
+            {
+              title: "大数据基础",
+              desc: "Basic",
+              third_menu: [
+                {
+                  title: "大数据基础",
+                  decs: "大数据基础等顶顶顶顶得得得"
+                },
+                {
+                  title: "大数据基础",
+                  decs: "大数据基础等顶顶顶顶得得得"
+                },
+                {
+                  title: "大数据基础",
+                  decs: "大数据基础等顶顶顶顶得得得"
+                },
+                {
+                  title: "大数据基础",
+                  decs: "大数据基础等顶顶顶顶得得得"
+                },
+                {
+                  title: "大数据基础",
+                  decs: "大数据基础等顶顶顶顶得得得"
+                },
+                {
+                  title: "大数据基础",
+                  decs: "大数据基础等顶顶顶顶得得得"
+                }
+              ]
+            },
+            {
+              title: "大数据基础",
+              desc: "Basic",
+              third_menu: [
+                {
+                  title: "大数据基础",
+                  decs: "大数据基础等顶顶顶顶得得得"
+                },
+                {
+                  title: "大数据基础",
+                  decs: "大数据基础等顶顶顶顶得得得"
+                },
+                {
+                  title: "大数据基础",
+                  decs: "大数据基础等顶顶顶顶得得得"
+                },
+                {
+                  title: "大数据基础",
+                  decs: "大数据基础等顶顶顶顶得得得"
+                },
+                {
+                  title: "大数据基础",
+                  decs: "大数据基础等顶顶顶顶得得得"
+                },
+                {
+                  title: "大数据基础",
+                  decs: "大数据基础等顶顶顶顶得得得"
+                }
+              ]
+            }
+
+          ]
+        },
+        {
+          title: "资讯与案例",
+          second_menu: [
+            {
+              title: "大数据基础",
+              desc: "Basic",
+              third_menu: []
+            },
+            {
+              title: "大数据基础",
+              desc: "Basic",
+              third_menu: []
+            },
+            {
+              title: "大数据基础",
+              desc: "Basic",
+              third_menu: []
+            },
+            {
+              title: "大数据基础",
+              desc: "Basic",
+              third_menu: [
+                {
+                  title: "大数据基础",
+                  decs: "大数据基础等顶顶顶顶得得得"
+                },
+                {
+                  title: "大数据基础",
+                  decs: "大数据基础等顶顶顶顶得得得"
+                },
+                {
+                  title: "大数据基础",
+                  decs: "大数据基础等顶顶顶顶得得得"
+                },
+                {
+                  title: "大数据基础",
+                  decs: "大数据基础等顶顶顶顶得得得"
+                },
+                {
+                  title: "大数据基础",
+                  decs: "大数据基础等顶顶顶顶得得得"
+                },
+                {
+                  title: "大数据基础",
+                  decs: "大数据基础等顶顶顶顶得得得"
+                }
+              ]
+            },
+            {
+              title: "大数据基础",
+              desc: "Basic",
+              third_menu: []
+            }
+
+          ]
+        },
+        {
+          title: "关于我们",
+          second_menu: [
+            {
+              title: "大数据基础",
+              desc: "Basic",
+              third_menu: []
+            },
+            {
+              title: "大数据基础",
+              desc: "Basic",
+              third_menu: []
+            },
+            {
+              title: "大数据基础",
+              desc: "Basic",
+              third_menu: []
+            },
+            {
+              title: "大数据基础",
+              desc: "Basic",
+              third_menu: [
+                {
+                  title: "大数据基础",
+                  decs: "大数据基础等顶顶顶顶得得得"
+                },
+                {
+                  title: "大数据基础",
+                  decs: "大数据基础等顶顶顶顶得得得"
+                },
+                {
+                  title: "大数据基础",
+                  decs: "大数据基础等顶顶顶顶得得得"
+                },
+                {
+                  title: "大数据基础",
+                  decs: "大数据基础等顶顶顶顶得得得"
+                },
+                {
+                  title: "大数据基础",
+                  decs: "大数据基础等顶顶顶顶得得得"
+                },
+                {
+                  title: "大数据基础",
+                  decs: "大数据基础等顶顶顶顶得得得"
+                }
+              ]
+            },
+            {
+              title: "大数据基础",
+              desc: "Basic",
+              third_menu: []
+            }
+
+          ]
+        }
+      ]
+    }
+  }
 }
 </script>
 
-<style>
+<style lang="less"  type="text/less">
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  .header{
+    position: fixed;
+    font-size: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.0980392);
+    background: rgb(31, 31, 31);
+    opacity: 0.95;
+    z-index: 999;
+    .header_wrapper{
+      width: 80%;
+      margin: 0 auto;
+      .logo_wrapper{
+        display: inline-block;
+        width: 170px;
+        height: 76px;
+        vertical-align: top;
+        background: url("./resource/Image/logo.jpg") center center no-repeat;
+        a{
+          display: block;
+          width: 100%;
+          height: 70px;
+        }
+      }
+      .nav{
+        display: inline-block;
+        width: 45%;
+        .nav_wrapper{
+          display: flex;
+          width: 100%;
+          line-height: 70px;
+          .first_menu{
+            &:first-child{  
+              flex: 0.7;
+            }
+            &:hover{
+              &>span>a{
+                color: #FFF;
+              }
+              .second_menu{
+                display: flex;
+              }
+            }
+            flex: 1;
+            text-align: center;
+            &>span{
+              font-size: 16px;
+              a{
+                color: #9B9EA3;
+              }
+            }
+            .second_menu{
+              position: absolute;
+              display: none;
+              top: 76px;
+              left: 0;
+              font-size: 15px;
+              width: 100%;
+              box-sizing: border-box;
+              padding: 0 10%;
+              flex-direction:row;
+              background: #2C2D2E;
+              // &:last-child{
+              //   display: flex;
+              // }
+              .second_menu_li{
+                flex: 1;
+                height: 76px;
+                border-right: 1px solid #9B9EA3;
+                &:last-child{
+                  border: none;
+                }
+                text-align: center;
+                .second_menu_wrapper{
+                  a{
+                    display: block;
+                    color: #9B9EA3;
+                    .big{
+                      line-height: 40px;
+                      font-size: 18px;
+                      font-weight: 700;
+                    }
+                    .small{
+                      line-height: 30px;
+                      font-size: 13px;
+                      }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      .lang_btn{
+        position: absolute;
+        top: 0;
+        right: 25%;
+        display: inline-block;
+        font-size: 15px;
+        text-align: center;
+        &:hover{
+          .btn{
+            visibility: visible;
+          }
+        }
+        a{
+          color: #9B9EA3;
+        }
+        .lang_btn_wrapper{
+          width: 100px;
+          line-height: 70px;
+        }
+        .lang_btn_wrapper:hover{
+          &>a{
+            color: #FFF;
+          }
+        }
+        .btn{
+          position: absolute;
+          visibility: hidden;
+          top: 76px;
+          span{
+            a{
+              width: 100px;
+              display: block;
+              line-height: 40px;
+              background: rgb(31, 31, 31);
+            }
+          }
+          span:hover>a{
+            color: #fff; 
+          }
+        }
+      }
+      .enter_btn{
+        position: absolute;
+        right: 13%;
+        top: 18px;
+        display: inline-block;
+        font-size: 15px;
+        letter-spacing: 2px;
+        a{
+           display: block;
+           border-radius: 4px;
+            padding: 10px 28px;
+            border: 1px solid #9B9EA3;
+            color: #9B9EA3;
+            transition: 400ms border-radius;
+            &:hover{
+              color: #fff;
+              border-radius: 0;
+            }
+        }
+      }
+    }
+      .third_menu{
+      display: none;
+    }
+  }
 }
 </style>
