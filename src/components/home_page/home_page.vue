@@ -66,22 +66,58 @@
       </div>
     </div>
     <div class="section_five">
-      <div class="title"></div>
+      <div class="title">热门动态，及时了解行业新闻</div>
       <div class="nav">
-          <ul><li><a href="#"></a></li></ul>
+          <ul><li :class="{'section_five_nav_active':section_five_index === index}" v-for="(item,index) in section_five_content" :key="index" @mouseenter="section_five_nav_hover(index)"><a href="#">{{item.nav_name}}</a></li></ul>
       </div>
       <div class="section_five_content">
-        <ul>
-          <li v-for="{item,index} in 5" :key=index><a href="#"></a></li>
+        <ul ref="section_five" :style="{'width': section_five_content[section_five_index].content.length*380 + 'px'}">
+          <li  v-for="(item,index) in section_five_content[section_five_index].content" :key=index ><a href="#">
+            <div class="img_wrapper">
+              <img :src="item.url" />
+            </div>
+            <div class="section_five_desc">
+              <div class="big">{{item.title}}</div>
+              <div class="small">{{item.desc}}</div>
+            </div>
+            </a></li>
         </ul>
+        <div class="section_five_circle">
+          <span @click.stop.prevent="section_five_circle_click(index)" :class="{'section_five_circle_active':section_five_circle_index === index}" v-for="(item,index) in Math.ceil(section_five_content[section_five_index].content.length/3)" :key="index"><a href="#"></a></span>
+        </div>
       </div>
     </div>
     <div class="section_six">
       <ul>
-        <li><a href="#"></a></li>
-        <li><a href="#"></a></li>
-        <li><a href="#"></a></li>
-        <li><a href="#"></a></li>
+        <li><a href="#">
+          <div class="img_wrapper"><img src="http://www.sefonsoft.com/Public/Home/default/images/main/quickIcon2.png"/></div>
+          <div class="desc">
+            <div class="big">7*12小时服务</div>
+            <div class="small">专家一对一</div>
+          </div>
+          </a></li>
+        <li><a href="#">
+          <div class="img_wrapper"><img src="http://www.sefonsoft.com/Public/Home/default/images/main/quickIcon1.png"/></div>
+          <div class="desc">
+            <div class="big">标准化实施</div>
+            <div class="small">全智能实时监控</div>
+          </div>
+          </a></li>
+        <li><a href="#">
+          <div class="img_wrapper"><img src="http://www.sefonsoft.com/Public/Home/default/images/main/quickIcon2.png"/></div>
+          <div class="desc">
+            <div class="big">持续业务保障</div>
+            <div class="small">响应零延迟</div>
+          </div>
+          </a></li>
+        <li><a href="#">
+          <div class="img_wrapper"><img src="http://www.sefonsoft.com/Public/Home/default/images/main/quickIcon1.png"/></div>
+          <div class="desc">
+          <div class="big">7*12小时服务</div>
+          <div class="small">专家一对一</div>
+          </div>
+          </a>
+          </li>
       </ul>
     </div>
   </div>
@@ -429,7 +465,156 @@ export default {
           desc: "大数据系统建设的大数据系统建设的大数据系统建设的大数据系统建设的大数据系统建设的大数据系统建设的。"
         }
       ],
-      section_four_circle_index: 0
+      section_four_circle_index: 0,
+      section_five_content: [
+        {
+          nav_name: "企业动态",
+          content: [
+            {
+              url: "http://www.sefonsoft.com/Data/Uploads/2017-03-28/58da13b52b241.jpg",
+              title: "四方伟业顺利通过CMMI 5",
+              desc: "近日，四方伟业顺利通过CMMI 5能力评估认"
+            },
+            {
+              url: "http://www.sefonsoft.com/Data/Uploads/2017-03-29/58db52aac5444.jpg",
+              title: "四方伟业顺利通过CMMI 5",
+              desc: "近日，四方伟业顺利通过CMMI 5能力评估认"
+            },
+            {
+              url: "http://www.sefonsoft.com/Data/Uploads/2017-06-14/5940a5cf43fd4.png",
+              title: "四方伟业顺利通过CMMI 5",
+              desc: "近日，四方伟业顺利通过CMMI 5能力评估认"
+            },
+            {
+              url: "http://www.sefonsoft.com/Data/Uploads/2016-07-13/5785dbddb75e4.jpg",
+              title: "四方伟业顺利通过CMMI 5",
+              desc: "近日，四方伟业顺利通过CMMI 5能力评估认"
+            },
+            {
+              url: "http://www.sefonsoft.com/Data/Uploads/2017-03-28/58da13b52b241.jpg",
+              title: "四方伟业顺利通过CMMI 5",
+              desc: "近日，四方伟业顺利通过CMMI 5能力评估认"
+            },
+            {
+              url: "http://www.sefonsoft.com/Data/Uploads/2017-06-14/5940a5cf43fd4.png",
+              title: "四方伟业顺利通过CMMI 5",
+              desc: "近日，四方伟业顺利通过CMMI 5能力评估认"
+            },
+            {
+              url: "http://www.sefonsoft.com/Data/Uploads/2016-07-13/5785dbddb75e4.jpg",
+              title: "四方伟业顺利通过CMMI 5",
+              desc: "近日，四方伟业顺利通过CMMI 5能力评估认"
+            },
+            {
+              url: "http://www.sefonsoft.com/Data/Uploads/2017-03-28/58da13b52b241.jpg",
+              title: "四方伟业顺利通过CMMI 5",
+              desc: "近日，四方伟业顺利通过CMMI 5能力评估认"
+            }
+          ]
+        },
+        {
+          nav_name: "产品动态",
+          content: [
+            {
+              url: "http://www.sefonsoft.com/Data/Uploads/2017-03-28/58da13b52b241.jpg",
+              title: "四方伟业顺利通过CMMI 5",
+              desc: "近日，四方伟业顺利通过CMMI 5能力评估认"
+            },
+            {
+              url: "http://www.sefonsoft.com/Data/Uploads/2017-03-29/58db52aac5444.jpg",
+              title: "四方伟业顺利通过CMMI 5",
+              desc: "近日，四方伟业顺利通过CMMI 5能力评估认"
+            },
+            {
+              url: "http://www.sefonsoft.com/Data/Uploads/2017-06-14/5940a5cf43fd4.png",
+              title: "四方伟业顺利通过CMMI 5",
+              desc: "近日，四方伟业顺利通过CMMI 5能力评估认"
+            },
+            {
+              url: "http://www.sefonsoft.com/Data/Uploads/2016-07-13/5785dbddb75e4.jpg",
+              title: "四方伟业顺利通过CMMI 5",
+              desc: "近日，四方伟业顺利通过CMMI 5能力评估认"
+            },
+            {
+              url: "http://www.sefonsoft.com/Data/Uploads/2017-03-28/58da13b52b241.jpg",
+              title: "四方伟业顺利通过CMMI 5",
+              desc: "近日，四方伟业顺利通过CMMI 5能力评估认"
+            },
+            {
+              url: "http://www.sefonsoft.com/Data/Uploads/2017-06-14/5940a5cf43fd4.png",
+              title: "四方伟业顺利通过CMMI 5",
+              desc: "近日，四方伟业顺利通过CMMI 5能力评估认"
+            },
+            {
+              url: "http://www.sefonsoft.com/Data/Uploads/2016-07-13/5785dbddb75e4.jpg",
+              title: "四方伟业顺利通过CMMI 5",
+              desc: "近日，四方伟业顺利通过CMMI 5能力评估认"
+            },
+            {
+              url: "http://www.sefonsoft.com/Data/Uploads/2017-03-28/58da13b52b241.jpg",
+              title: "四方伟业顺利通过CMMI 5",
+              desc: "近日，四方伟业顺利通过CMMI 5能力评估认"
+            },
+            {
+              url: "http://www.sefonsoft.com/Data/Uploads/2017-06-14/5940a5cf43fd4.png",
+              title: "四方伟业顺利通过CMMI 5",
+              desc: "近日，四方伟业顺利通过CMMI 5能力评估认"
+            },
+            {
+              url: "http://www.sefonsoft.com/Data/Uploads/2016-07-13/5785dbddb75e4.jpg",
+              title: "四方伟业顺利通过CMMI 5",
+              desc: "近日，四方伟业顺利通过CMMI 5能力评估认"
+            },
+            {
+              url: "http://www.sefonsoft.com/Data/Uploads/2017-03-28/58da13b52b241.jpg",
+              title: "四方伟业顺利通过CMMI 5",
+              desc: "近日，四方伟业顺利通过CMMI 5能力评估认"
+            },
+            {
+              url: "http://www.sefonsoft.com/Data/Uploads/2017-06-14/5940a5cf43fd4.png",
+              title: "四方伟业顺利通过CMMI 5",
+              desc: "近日，四方伟业顺利通过CMMI 5能力评估认"
+            },
+            {
+              url: "http://www.sefonsoft.com/Data/Uploads/2016-07-13/5785dbddb75e4.jpg",
+              title: "四方伟业顺利通过CMMI 5",
+              desc: "近日，四方伟业顺利通过CMMI 5能力评估认"
+            },
+            {
+              url: "http://www.sefonsoft.com/Data/Uploads/2017-03-28/58da13b52b241.jpg",
+              title: "四方伟业顺利通过CMMI 5",
+              desc: "近日，四方伟业顺利通过CMMI 5能力评估认"
+            }
+          ]
+        },
+        {
+          nav_name: "社会动态",
+          content: [
+            {
+              url: "http://www.sefonsoft.com/Data/Uploads/2017-03-28/58da13b52b241.jpg",
+              title: "四方伟业顺利通过CMMI 5",
+              desc: "近日，四方伟业顺利通过CMMI 5能力评估认"
+            }
+          ]
+        },
+        {
+          nav_name: "企业动态",
+          content: [
+            {
+              url: "http://www.sefonsoft.com/Data/Uploads/2017-03-28/58da13b52b241.jpg",
+              title: "四方伟业顺利通过CMMI 5",
+              desc: "近日，四方伟业顺利通过CMMI 5能力评估认"
+            },
+            {
+              url: "http://www.sefonsoft.com/Data/Uploads/2017-03-29/58db52aac5444.jpg",
+              title: "四方伟业顺利通过CMMI 5",
+              desc: "近日，四方伟业顺利通过CMMI 5能力评估认"
+            }
+          ]
+        }
+      ],
+      section_five_index: 0,
+      section_five_circle_index: 0
     }
   },
   created() {
@@ -477,6 +662,19 @@ export default {
       console.log(width)
       this.$refs.section_four.style.top = width.toString() + 'px'
       this.section_four_circle_index = index
+    },
+    section_five_nav_hover(index) {
+      this.section_five_index = index
+      this.$refs.section_five.style.transition = "left 0ms"
+      this.$refs.section_five.style.left = "0"
+      this.section_five_circle_index = 0
+    },
+    section_five_circle_click(index) {
+      var width = -1140 * index
+      console.log(width)
+      this.$refs.section_five.style.transition = "left 700ms"
+      this.$refs.section_five.style.left = width.toString() + "px"
+      this.section_five_circle_index = index
     }
   },
   components: {
@@ -786,6 +984,171 @@ export default {
           }
         }
       }
+  }
+  .section_five{
+    background: url("http://www.sefonsoft.com/Public/Home/default/images/main/NewBg.jpg") center center no-repeat;
+    .title{
+      width: 78%;
+      margin: 0 auto;
+      font-size: 40px;
+      line-height: 100px;
+      padding-top: 90px;
+      color: #fff;
+      letter-spacing: 2px;
+    }
+    .nav{
+      width: 78%;
+      margin: 0 auto;
+      margin-bottom: 50px;
+      ul{
+        font-size: 0;
+        margin-top: 20px;
+        li{
+          display: inline-block;    
+          border-radius: 4px;  
+          a{
+            display: inline-block;
+            color: #fff;
+            padding: 9px 22px;
+            font-size: 14px;
+          }
+          &:hover,&.section_five_nav_active{
+            background: #1886DF;
+          }
+        }
+      }
+    }
+    .section_five_content{
+      padding-bottom: 80px;
+      width: 1140px;
+      margin: 0 auto;
+      overflow: hidden;
+      ul{
+        position: relative;
+        left: 0;
+        font-size: 0;
+        li{
+          vertical-align: top;
+            position: relative;
+            margin-right: 30px;
+            &:last-child{
+              margin-right: 0;
+            }
+            a{
+              display: block;
+            }
+            .img_wrapper{
+              img{
+                width: 350px;
+                height: 200px;
+                border-radius: 5px 5px 0 0;
+                display: block;
+                transition: height 350ms;
+              }
+            }
+            width: 350px;
+            display: inline-block;
+            box-sizing: border-box;
+            a:hover{
+              // top: -90px;
+              .img_wrapper{
+                height: 130px;
+                img{
+                  height: 130px;
+                }
+              }
+              .section_five_desc{
+                background: #4E4E4E;
+                .big{
+                  color: #fff;
+                }
+                height: 180px;
+                padding: 35px 25px;
+              }
+
+            }
+            .section_five_desc{
+              width: 350px;
+              box-sizing: border-box;
+              padding: 0 25px;
+              background: #fff;
+              border-radius: 0 0 5px 5px;
+              height: 110px;
+              transition: height 350ms;
+              transition: padding 350ms;
+              .big{
+                font-size: 18px;
+                line-height: 60px;
+                color: #000;
+                border-bottom: 1px solid #959595;
+              }
+              .small{
+                color: #959595;
+                font-size: 11px;
+                line-height: 40px;
+                padding-bottom: 10px;
+              }
+            }
+        }
+      }
+      .section_five_circle{
+        margin-top: 50px;
+        text-align: center;
+        span{
+          display: inline-block;
+          margin-right: 10px;
+          &:last-child{
+            margin-right: 0
+          }
+          &.section_five_circle_active{
+            a{
+              border: 1px solid #fff;
+              background: #fff;
+            }
+          }
+          a{
+            display: block;
+            width: 13px;
+            height: 13px;
+            border-radius: 7px;
+            border: 1px solid #fff;
+          }
+        }
+      }
+    }
+  }
+  .section_six{
+    ul{
+      display: flex;
+      padding: 30px 0;
+      width: 80%;
+      margin: 0 auto;
+      li{
+        flex: 1;
+        border-right: 1px solid #b1b1b1;
+        text-align: center;
+        &:last-child{
+          border-right: none;
+        }
+        .img_wrapper{
+          display: inline-block;
+          vertical-align: top;
+          margin-right: 10px;
+          margin-top: 5px;
+        }
+        .desc{
+          display: inline-block;
+          font-size: 18px;
+          line-height: 30px;
+          .big{
+            color: #000;
+          }
+          .small{
+            color:#727171;
+          }
+        }
+      }
+    }
   }
 }
 </style>

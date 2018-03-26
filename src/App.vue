@@ -47,7 +47,15 @@
     <div class="content">
       <home-page></home-page>
     </div>
-    <div class="footer"></div>
+    <div class="footer">
+      <div class="content">
+        <span v-for="(item,index) in footer_content.data" :key="index">
+          {{item.title}}
+          <ul><li v-for="(item1,index1) in item.content" :key="index1"><a href="#">{{item1}}</a></li></ul>
+        </span>
+      </div>
+      <div class="desc">{{footer_content.desc}}</div>
+    </div>
     <div class="cover_btn"></div>
   </div>
 </template>
@@ -441,7 +449,28 @@ export default {
 
           ]
         }
-      ]
+      ],
+      footer_content: {
+        data: [
+          {
+            title: "常见问题",
+            content: ["产品常见问题","网站常见问题"]
+          },
+          {
+            title: "热门动态",
+            content: ["常见问题","热门动态","获取支持"]
+          },
+          {
+            title: "获取支持",
+            content: ["联系我们","在线提单"]
+          },
+          {
+            title: "关于我们",
+            content: ["客户案例","工作机会"]
+          }
+        ],
+        desc: "成都四方伟业软件股份有限公司 © 2016 SEFONSOFT ALL RIGHTS RESERVED"
+     }
     }
   },
   components: {
@@ -670,6 +699,54 @@ export default {
     }
       .third_menu{
       display: none;
+    }
+  }
+  .footer{
+    position: relative;
+    background: #26272C;
+    padding-bottom: 180px;
+    .content {
+      text-align: center;
+      font-size: 0;
+      padding-top: 40px;
+      span{
+        position: relative;
+        display: inline-block;
+        font-size: 12px;
+        color: #fff;
+        width: 100px;
+        border-right: 1px solid #818181;
+        &:last-child{
+         border-right: none;
+        }
+        ul{
+          text-align: center;
+          position: absolute;
+          width: 100%;
+          top: 25px;
+          // left: 10px;
+          li{
+            line-height: 35px;
+            a{
+              font-size: 12px;
+              color:#9B9EA3;
+              &:hover{
+                color: #fff;
+              }
+            }
+          }
+        }
+      
+      }
+    }
+    .desc{
+      position: absolute;
+      bottom: 20px;
+      color: #818181;
+      font-size: 10px;
+      letter-spacing: 1px;
+      left: 50%;
+      transform: translateX(-50%);
     }
   }
 }
