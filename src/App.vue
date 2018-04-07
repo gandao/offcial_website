@@ -1,16 +1,16 @@
 <template>
   <div id="app">
-    <div class="header">
+    <div class="header" :class="{'top': srcoll <= 20,'top_1': header_show.is}" >
       <div class="header_wrapper">
         <div class="logo_wrapper">
           <a href="#"></a>
         </div>
         <div class="nav">
           <ul class="nav_wrapper">
-            <li class="first_menu" v-for="(item,index) in menu_data" :key =index>
+            <li @click.stop.prevent="fun_menu(index)" class="first_menu" v-for="(item,index) in menu_data" :key =index>
               <span class="name"><a href="#">{{item.title}}</a></span>
-              <ul class="second_menu">
-                <li class="second_menu_li" v-for="(item1,index1) in item.second_menu" :key=index1>
+              <ul ref="second_menu" class="second_menu">
+                <li @mouseover="fun_menu_two(index,index1)" class="second_menu_li" v-for="(item1,index1) in item.second_menu" :key=index1>
                   <span class="second_menu_wrapper">
                     <a href="#">
                         <div class="big">{{item1.title}}</div>
@@ -40,18 +40,18 @@
           </div>
         </div>
         <div class="enter_btn">
-          <a href="#">登录/注册</a>
+          <a @click.stop.prevent="$router.push({name:'log_in'})" href="#">登录/注册</a>
         </div>
       </div>
     </div>
     <div class="content">
-      <home-page></home-page>
+      <router-view :header_show="header_show"></router-view>
     </div>
     <div class="footer">
       <div class="content">
         <span v-for="(item,index) in footer_content.data" :key="index">
           {{item.title}}
-          <ul><li v-for="(item1,index1) in item.content" :key="index1"><a href="#">{{item1}}</a></li></ul>
+          <ul><li  v-for="(item1,index1) in item.content" :key="index1"><a href="#">{{item1}}</a></li></ul>
         </span>
       </div>
       <div class="desc">{{footer_content.desc}}</div>
@@ -470,11 +470,43 @@ export default {
           }
         ],
         desc: "成都四方伟业软件股份有限公司 © 2016 SEFONSOFT ALL RIGHTS RESERVED"
+     },
+     srcoll: 0,
+     header_show: {
+       is: false
      }
     }
   },
   components: {
     homePage: home_page
+  },
+  methods: {
+    handleScroll() {
+      this.srcoll = document.documentElement.scrollTop || document.body.scrollTop
+    },
+    fun_menu(index) {
+      console.log("132")
+      this.$router.push({name: "home_page"})
+    },
+    fun_menu_two(index,index1) {
+      // console.log(123)
+      var li = this.$refs.second_menu[index].children
+      // console.log(li)
+      for (var i = 0; i < li.length; i++) {
+        li[i].children[0].style.borderRight = "1px solid rgb(143, 141, 141)"
+      }
+      if (index1 === li.length) {
+        li[index1 - 1].children[0].style.borderRight = "none"
+      } else if (index1 === 0) {
+        li[index1].children[0].style.borderRight = "none"
+      } else {
+        li[index1].children[0].style.borderRight = "none"
+        li[index1 - 1].children[0].style.borderRight = "none"
+      }
+    } 
+  },
+  created() {
+    window.addEventListener('scroll', this.handleScroll)
   }
 }
 </script>
@@ -490,6 +522,12 @@ export default {
     background: rgb(31, 31, 31);
     opacity: 0.95;
     z-index: 999;
+    &.top{
+     background: none;
+    }
+    &.top_1{
+      background: rgb(31, 31, 31);
+    }
     .header_wrapper{
       width: 80%;
       margin: 0 auto;
@@ -507,14 +545,14 @@ export default {
       }
       .nav{
         display: inline-block;
-        width: 45%;
+        width: 42%;
         .nav_wrapper{
           display: flex;
           width: 100%;
           line-height: 70px;
           .first_menu{
             &:first-child{  
-              flex: 0.7;
+              flex: 0 0 90px;
             }
             &:hover{
               &>span>a{
@@ -534,10 +572,10 @@ export default {
                 }
               }
             }
-            flex: 1;
+            flex: 0 0 110px;
             text-align: center;
             &>span{
-              font-size: 16px;
+              font-size: 14px;
               a{
                 color: #9B9EA3;
               }
@@ -555,13 +593,13 @@ export default {
               background: #2C2D2E;
               transition: opacity 2000ms;
               .second_menu_li{
-                flex: 1;
+                flex: 0 0 200px;
                 padding: 18px 0;
-                height: 40px;
+                height: 35px;
                 text-align: center;
                 .second_menu_wrapper{
                   display: block;
-                  border-right: 1px solid #9B9EA3;
+                  border-right: 1px solid rgb(143, 141, 141);
                   &:last-child{
                     border-right: none;
                   }
@@ -569,13 +607,15 @@ export default {
                     display: block;
                     color: #9B9EA3;
                     .big{
-                      line-height: 25px;
-                      font-size: 18px;
+                      line-height: 20px;
+                      font-size: 15px;
                       font-weight: 700;
+                      letter-spacing: 2px;
                     }
                     .small{
-                      line-height: 15px;
-                      font-size: 13px;
+                      margin-top: 3px;
+                      line-height: 12px;
+                      font-size: 12px;
                       }
                   }
                 }
@@ -595,7 +635,7 @@ export default {
                   font-size: 0;
                   width: 100%;
                   position: absolute;
-                  top: 75px;
+                  top: 70px;
                   left: 0;
                   background: #1F1F1F;
                   height: 350px;
@@ -662,7 +702,7 @@ export default {
         .btn{
           position: absolute;
           visibility: hidden;
-          top: 76px;
+          top: 70px;
           span{
             a{
               width: 100px;

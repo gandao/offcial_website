@@ -1,17 +1,25 @@
 <template>
   <div id="lunbo">
-        <transition-group tag="ul" class="wrapper1" name="image">
-            <li v-for="(item,index) in img_data" v-show="index===mark" :key=index>
-                <img :src=item.url />
+    <ul ref="content" class="wrapper1">
+        <li>
             <span class="btn1"><a href="#">了解"ASS EAR"产品</a></span>
-            </li>
-        </transition-group>
-      <ul class="circle_wrapper">
-          <li v-for="(item,index) in img_data" :key=index :class="{'active': index === mark}">
-              <span class="circle" @click.stop.prevent="change(index)"><a href="#"></a></span>
-              <span class="desc">{{item.desc}}</span>
-          </li>
-      </ul>
+        </li>
+        <li>
+            <span class="btn1"><a href="#">了解"ASS EAR"产品</a></span>
+        </li>
+        <li class="third">
+            <span class="btn1"><a href="#">了解"ASS EAR"产品</a></span>
+        </li>
+        <li>
+            <span class="btn1"><a href="#">了解"ASS EAR"产品</a></span>
+        </li>
+    </ul>
+    <ul class="circle_wrapper">
+        <li v-for="(item,index) in img_data" :key=index :class="{'active': index === mark}">
+            <span class="circle" @click.stop.prevent="fun_circle(index)"><a href="#"></a></span>
+            <span class="desc">{{item.desc}}</span>
+        </li>
+    </ul>
   </div>
 </template>
 <script>
@@ -36,29 +44,42 @@ export default {
                     desc: "TTEW WA"
                 }
             ],
-            mark: 1,
+            mark: 0,
+            pos: 0,
             timer: {}
         }
     },
     methods: {
-        autoplay() {
-            this.mark++
-            if (this.mark === this.img_data.length) {
-                this.mark = 0
-            }
+        fun_circle(index) {
+            clearInterval(this.timer)
+            this.change(index)
+            this.timer = setInterval(this.play,3500)
+        },
+        change(index) {
+            this.$refs.content.style.left = (index * -100).toString() + '%'
+            this.section_four_circle_index = index
+            this.mark = index
         },
         play() {
-            this.timer = setInterval(this.autoplay,4000)
-        },
-        change(i) {
-            clearInterval(this.timer)
-            this.mark = i
-            // clearInterval(this.timer) 
-            this.timer = setInterval(this.autoplay,4000)
+          if (this.mark !== 3 && this.pos === 0) {
+              this.mark++
+              this.change(this.mark)
+          } else if (this.mark === 3 && this.pos === 0) {
+              this.pos = 1
+              this.mark--
+              this.change(this.mark)
+          } else if (this.mark !== 0 && this.pos === 1) {
+              this.mark--
+              this.change(this.mark)
+          } else if (this.mark === 0 && this.pos === 1) {
+              this.mark++
+              this.change(this.mark)
+              this.pos = 0
+          }
         }
     },
     created() {
-        this.play()
+        this.timer = setInterval(this.play,3500)
     }
 }
 </script>
@@ -66,34 +87,32 @@ export default {
 #lunbo{
     width: 100%; 
     position: relative;
+    height: 750px;
+    overflow: hidden;
     .wrapper1{
         padding: 0;
         margin: 0;
         position: relative;
-        width: 100%;
-        .image-enter-active {  
-            transform: translateX(0);  
-            transition: all 1.5s ease;  
-        }  
-        .image-leave-active {
-            position: absolute;
-            top: 0;
-            left: 0;  
-            transform: translateX(-100%);  
-            transition: all 1.5s ease;  
-        }  
-        .image-enter {  
-            transform: translateX(100%);  
-        }  
-        .image-leave { 
-            position: absolute;
-            top: 0;
-            left: 0; 
-            transform: translateX(0);  
-        }  
-        img{
-            width: 100%;
-            height: 700px;
+        width: 400%;
+        height: 750px;
+        font-size: 0;
+        left: 0;
+        transition: left 700ms;
+        li{
+            position: relative;
+            display: inline-block;
+            width: 25%;
+            height: 750px;
+            background: url("http://www.sefonsoft.com/Data/Uploads/2017-03-21/58d087d6625d9.jpg") no-repeat center center;
+            &.third{
+                background: url("http://www.sefonsoft.com/Data/Uploads/2017-03-15/58c90cf122cc0.jpg") no-repeat center center;
+            }
+            &:first-child{
+                background: url("http://www.sefonsoft.com/Public/Home/default/images/banner-home.jpg") no-repeat center center;
+            }
+            &:last-child{
+                background: url("http://www.sefonsoft.com/Data/Uploads/2017-03-16/58c9e92529a4d.jpg") no-repeat center center;
+            }
         }
         .btn1{
             position: absolute;

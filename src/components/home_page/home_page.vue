@@ -12,7 +12,7 @@
       </div>
       <div class="section_two_content">
         <ul ref="section_two"  :style="{'width': section_content[section_two_index].content.length/3*100 + '%'}">
-          <li :style="{'width': 100/section_content[section_two_index].content.length + '%'}" v-for="(item1,index1) in section_content[section_two_index].content" :key=index1><a href="#">
+          <li  @click.stop.prevent="fun_detail" :style="{'width': 100/section_content[section_two_index].content.length + '%'}" v-for="(item1,index1) in section_content[section_two_index].content" :key=index1><a href="#">
             <img :src="item1.url" />
             <div class="title">{{item1.name}}</div>
             <div class="desc">{{item1.desc}}</div>
@@ -49,7 +49,7 @@
       </div>
       <div class="section_four_content">
         <ul ref="section_four" :style="{'height': section_four_content.length * 180 + 'px'}">
-          <li v-for="(item,index) in section_four_content" :key="index"><a href="#">
+          <li @click.stop.prevent="fun_detail" v-for="(item,index) in section_four_content" :key="index"><a href="#">
             <div class="img_wrapper">
               <img :src="item.url"/>
             </div>
@@ -68,11 +68,11 @@
     <div class="section_five">
       <div class="title">热门动态，及时了解行业新闻</div>
       <div class="nav">
-          <ul><li :class="{'section_five_nav_active':section_five_index === index}" v-for="(item,index) in section_five_content" :key="index" @mouseenter="section_five_nav_hover(index)"><a href="#">{{item.nav_name}}</a></li></ul>
+          <ul><li  :class="{'section_five_nav_active':section_five_index === index}" v-for="(item,index) in section_five_content" :key="index" @mouseenter="section_five_nav_hover(index)"><a href="#">{{item.nav_name}}</a></li></ul>
       </div>
       <div class="section_five_content">
         <ul ref="section_five" :style="{'width': section_five_content[section_five_index].content.length*380 + 'px'}">
-          <li  v-for="(item,index) in section_five_content[section_five_index].content" :key=index ><a href="#">
+          <li @click.stop.prevent="fun_detail" v-for="(item,index) in section_five_content[section_five_index].content" :key=index ><a href="#">
             <div class="img_wrapper">
               <img :src="item.url" />
             </div>
@@ -89,7 +89,7 @@
     </div>
     <div class="section_six">
       <ul>
-        <li><a href="#">
+        <li @click.stop.prevent="fun_detail"><a href="#">
           <div class="img_wrapper"><img src="http://www.sefonsoft.com/Public/Home/default/images/main/quickIcon2.png"/></div>
           <div class="desc">
             <div class="big">7*12小时服务</div>
@@ -125,6 +125,7 @@
 <script>
 import lunbo from "../lunbo/lunbo"
 export default {
+  props: ["header_show"],
   data() {
     return {
       section_content: [
@@ -618,6 +619,7 @@ export default {
     }
   },
   created() {
+    this.header_show.is = false
   },
   methods: {
     section_two_change(index) {
@@ -675,6 +677,9 @@ export default {
       this.$refs.section_five.style.transition = "left 700ms"
       this.$refs.section_five.style.left = width.toString() + "px"
       this.section_five_circle_index = index
+    },
+    fun_detail() {
+      this.$router.push({name: "detail"})
     }
   },
   components: {
