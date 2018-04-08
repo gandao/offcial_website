@@ -290,6 +290,14 @@ export default {
             {
               url: "http://www.sefonsoft.com/Data/Uploads/2016-12-13/584fc2673cf17.png",
               name: "疾病预防"
+            },
+            {
+              url: "http://www.sefonsoft.com/Data/Uploads/2016-12-13/584fc2673cf17.png",
+              name: "疾病预防"
+            },
+            {
+              url: "http://www.sefonsoft.com/Data/Uploads/2016-12-13/584fc2673cf17.png",
+              name: "疾病预防"
             }
           ],
           desc_big: "政府方案解决方案",
@@ -1032,6 +1040,7 @@ export default {
         position: relative;
         left: 0;
         font-size: 0;
+        height: 320px;
         li{
           vertical-align: top;
             position: relative;
@@ -1048,6 +1057,8 @@ export default {
                 height: 200px;
                 border-radius: 5px 5px 0 0;
                 display: block;
+                // position: relative;
+                // top: 0;
                 transition: height 350ms;
               }
             }
@@ -1055,11 +1066,11 @@ export default {
             display: inline-block;
             box-sizing: border-box;
             a:hover{
-              // top: -90px;
               .img_wrapper{
-                height: 130px;
+                 height: 130px;
                 img{
-                  height: 130px;
+                  // top: -70px;
+                   height: 130px;
                 }
               }
               .section_five_desc{
@@ -1067,27 +1078,27 @@ export default {
                 .big{
                   color: #fff;
                 }
-                height: 180px;
-                padding: 35px 25px;
+                padding: 35px 0px;
+                height: 190px;
               }
-
             }
             .section_five_desc{
               width: 350px;
+              height: 120px;
               box-sizing: border-box;
-              padding: 0 25px;
               background: #fff;
               border-radius: 0 0 5px 5px;
-              height: 110px;
+              // transition: padding 350ms;
               transition: height 350ms;
-              transition: padding 350ms;
               .big{
+                margin: 0 25px;
                 font-size: 18px;
                 line-height: 60px;
                 color: #000;
                 border-bottom: 1px solid #959595;
               }
               .small{
+                padding: 0 25px;
                 color: #959595;
                 font-size: 11px;
                 line-height: 40px;

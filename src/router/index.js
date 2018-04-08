@@ -22,5 +22,7 @@ export default new Router({
     path: "/",
     redirect: '/home_page'
   }
-  ]
+  ],
+  mode: 'history',
+  base: '/offcial_website/'
 })

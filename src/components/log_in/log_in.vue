@@ -147,7 +147,7 @@ export default {
                     height: 24px;
                     vertical-align: middle;
                     background: #fff;
-                    border-radius: 12   px;
+                    border-radius: 12px;
                     margin-right: 7px;
                 }
                 span{
